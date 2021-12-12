@@ -1,3 +1,3 @@
-# xfile
+# xenv
 
-Cross platform file library (BETA; still under construction)
+Cross platform environment variables library (BETA; still under construction)
