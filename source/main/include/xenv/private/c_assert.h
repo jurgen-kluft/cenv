@@ -1,13 +1,13 @@
 #ifndef __XREGISTRY_ASSERT_H__
 #define __XREGISTRY_ASSERT_H__
-#include "xbase/x_target.h"
+#include "cbase/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
 #endif
 
-#include "xbase/x_debug.h"
+#include "cbase/c_debug.h"
 
-namespace xcore
+namespace ncore
 {
     namespace xfile
     {

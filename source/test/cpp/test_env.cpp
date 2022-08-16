@@ -1,9 +1,9 @@
-#include "xbase/x_allocator.h"
-#include "xbase/x_runes.h"
-#include "xenv/x_env.h"
-#include "xunittest/xunittest.h"
+#include "cbase/c_allocator.h"
+#include "cbase/c_runes.h"
+#include "cenv/c_env.h"
+#include "cunittest/xunittest.h"
 
-using namespace xcore;
+using namespace ncore;
 
 UNITTEST_SUITE_BEGIN(test_env)
 {
