@@ -27,7 +27,7 @@
 #include "xenv/x_env.h"
 #include "xenv/private/x_assert.h"
 
-namespace xcore
+namespace ncore
 {
     namespace xenv
     {
@@ -40,15 +40,15 @@ namespace xcore
 
 #if defined(TARGET_OS_WINDOWS)
 
-        static char* env_get_impl(char const* name, xsize_t* psize)
+        static char* env_get_impl(char const* name, uint_t* psize)
         {
             // check
             assert_and_check_return_val(name, 0);
 
             // done
             bool   ok      = false;
-            xsize_t  size    = 0;
-            xsize_t  maxn    = 256;
+            uint_t  size    = 0;
+            uint_t  maxn    = 256;
             char*    value   = null;
             wchar_t* value_w = null;
             do
@@ -59,11 +59,11 @@ namespace xcore
 
                 // make name
                 wchar_t name_w[512];
-                xsize_t name_n = atow(name_w, name, arrayn(name_w));
+                uint_t name_n = atow(name_w, name, arrayn(name_w));
                 assert_and_check_break(name_n != -1);
 
                 // get it
-                size = (xsize_t)kernel32()->GetEnvironmentVariableW(name_w, value_w, (DWORD)maxn);
+                size = (uint_t)kernel32()->GetEnvironmentVariableW(name_w, value_w, (DWORD)maxn);
                 if (!size)
                 {
                     // error?
@@ -82,7 +82,7 @@ namespace xcore
                     assert_and_check_break(value_w);
 
                     // get it
-                    size = (xsize_t)kernel32()->GetEnvironmentVariableW(name_w, value_w, (DWORD)size + 1);
+                    size = (uint_t)kernel32()->GetEnvironmentVariableW(name_w, value_w, (DWORD)size + 1);
                     assert_and_check_break(size);
                 }
 
@@ -130,12 +130,12 @@ namespace xcore
             // done
             bool   ok      = false;
             wchar_t* value_w = null;
-            xsize_t  value_n = 0;
+            uint_t  value_n = 0;
             do
             {
                 // make name
                 wchar_t name_w[512];
-                xsize_t name_n = atow(name_w, name, arrayn(name_w));
+                uint_t name_n = atow(name_w, name, arrayn(name_w));
                 assert_and_check_break(name_n != -1);
 
                 // exists value?
@@ -176,7 +176,7 @@ namespace xcore
             return ok;
         }
 
-        xsize_t env_load(env_t* env, char const* name)
+        uint_t env_load(env_t* env, char const* name)
         {
             // check
             assert_and_check_return_val(env && name, 0);
@@ -268,13 +268,13 @@ namespace xcore
             return ok;
         }
 
-        xsize_t env_first(char const* name, char* value, xsize_t maxn)
+        uint_t env_first(char const* name, char* value, uint_t maxn)
         {
             // check
             assert_and_check_return_val(name && value && maxn, 0);
 
             // get it
-            xsize_t size = 0;
+            uint_t size = 0;
             char*   data = env_get_impl(name, &size);
             if (data && size < maxn)
             {
@@ -316,7 +316,7 @@ namespace xcore
 
 #elif defined(TARGET_MAC)
 
-        xsize_t env_load(env_t* env, char const* name)
+        uint_t env_load(env_t* env, char const* name)
         {
             // check
             assert_and_check_return_val(env && name, 0);
@@ -408,7 +408,7 @@ namespace xcore
             return ok;
         }
         
-        xsize_t env_first(char const* name, char* value, xsize_t maxn)
+        uint_t env_first(char const* name, char* value, uint_t maxn)
         {
             // check
             assert_and_check_return_val(name && value && maxn, 0);
@@ -418,7 +418,7 @@ namespace xcore
             check_return_val(data, 0);
 
             // the value size
-            xsize_t size = strlen(data);
+            uint_t size = strlen(data);
             check_return_val(size, 0);
 
             // the space is not enough
@@ -455,4 +455,4 @@ namespace xcore
 #endif
 
     } // namespace xenv
-} // namespace xcore
+} // namespace ncore

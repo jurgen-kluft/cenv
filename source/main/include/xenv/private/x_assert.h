@@ -7,7 +7,7 @@
 
 #include "xbase/x_debug.h"
 
-namespace xcore
+namespace ncore
 {
     namespace xfile
     {

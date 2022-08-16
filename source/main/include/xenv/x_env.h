@@ -7,7 +7,7 @@
 
 #include "xbase/x_debug.h"
 
-namespace xcore
+namespace ncore
 {
     namespace xenv
     {
@@ -32,7 +32,7 @@ namespace xcore
         //
         // @return              the env variable count
         //
-        xsize_t env_size(penv_t env);
+        uint_t env_size(penv_t env);
 
         // load the env variable from the given name
         //
@@ -63,7 +63,7 @@ namespace xcore
         //
         // @return              the count of the variable value
         //
-        xsize_t env_load(penv_t env, char const* name);
+        uint_t env_load(penv_t env, char const* name);
 
         // save the env variable and will overwrite it
         //
@@ -123,7 +123,7 @@ namespace xcore
         //
         // @return              the variable value
         //
-        char const* env_at(penv_t env, xsize_t index);
+        char const* env_at(penv_t env, uint_t index);
 
         // replace the env variable and will overwrite it
         //
@@ -173,7 +173,7 @@ namespace xcore
         //
         // @return              the variable value size
         //
-        xsize_t env_first(char const* name, char* value, xsize_t maxn);
+        uint_t env_first(char const* name, char* value, uint_t maxn);
 
         // get the env variable values
         //
@@ -193,7 +193,7 @@ namespace xcore
         //
         // @return              the variable values size
         //
-        xsize_t env_get(char const* name, char* values, xsize_t maxn);
+        uint_t env_get(char const* name, char* values, uint_t maxn);
 
         // set the env variable values
         //
@@ -226,6 +226,6 @@ namespace xcore
 
     } // namespace xenv
 
-} // namespace xcore
+} // namespace ncore
 
 #endif //< __XENV_ENV_PUBLIC_H__

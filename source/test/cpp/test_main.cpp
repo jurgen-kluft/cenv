@@ -12,9 +12,9 @@ UNITTEST_SUITE_LIST(xRegistryUnitTest);
 
 UNITTEST_SUITE_DECLARE(xRegistryUnitTest, test_registry);
 
-namespace xcore
+namespace ncore
 {
-	class UnitTestAssertHandler : public xcore::asserthandler_t
+	class UnitTestAssertHandler : public ncore::asserthandler_t
 	{
 	public:
 		UnitTestAssertHandler()
@@ -29,7 +29,7 @@ namespace xcore
 			return false;
 		}
 
-		xcore::s32		NumberOfAsserts;
+		ncore::s32		NumberOfAsserts;
 	};
 
 	class UnitTestAllocator : public UnitTest::Allocator
@@ -64,34 +64,34 @@ namespace xcore
 		virtual void		v_release()
 		{
 			mAllocator->release();
-			mAllocator = NULL;
+			mAllocator = nullptr;
 		}
 	};
 }
 
-xcore::UnitTestAssertHandler gAssertHandler;
+ncore::UnitTestAssertHandler gAssertHandler;
 
 bool gRunUnitTest(UnitTest::TestReporter& reporter)
 {
 	xbase::init();
 	
 #ifdef TARGET_DEBUG
-	xcore::context_t::set_assert_handler(&gAssertHandler);
+	ncore::context_t::set_assert_handler(&gAssertHandler);
 #endif
 
-	xcore::alloc_t* system_alloc = xcore::context_t::system_alloc();
-	xcore::TestAllocator testAllocator(system_alloc);
-	xcore::UnitTestAllocator unittestAllocator(&testAllocator);
+	ncore::alloc_t* system_alloc = ncore::context_t::system_alloc();
+	ncore::TestAllocator testAllocator(system_alloc);
+	ncore::UnitTestAllocator unittestAllocator(&testAllocator);
 	UnitTest::SetAllocator(&unittestAllocator);
-	xcore::context_t::set_system_alloc(&testAllocator);
+	ncore::context_t::set_system_alloc(&testAllocator);
 
-	xcore::console->write("Configuration: ");
-	xcore::console->writeLine(TARGET_FULL_DESCR_STR);
+	ncore::console->write("Configuration: ");
+	ncore::console->writeLine(TARGET_FULL_DESCR_STR);
 
 	int r = UNITTEST_SUITE_RUN(reporter, xRegistryUnitTest);
-	UnitTest::SetAllocator(NULL);
+	UnitTest::SetAllocator(nullptr);
 	
-	xcore::context_t::set_system_alloc(system_alloc);
+	ncore::context_t::set_system_alloc(system_alloc);
 	xbase::exit();
 	return r==0;
 }
