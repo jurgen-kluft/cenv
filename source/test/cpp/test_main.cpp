@@ -5,7 +5,7 @@
 
 #include "cregistry/c_registry.h"
 
-#include "cunittest/xunittest.h"
+#include "cunittest/cunittest.h"
 #include "cunittest/private/ut_ReportAssert.h"
 
 UNITTEST_SUITE_LIST(xRegistryUnitTest);
@@ -73,7 +73,7 @@ ncore::UnitTestAssertHandler gAssertHandler;
 
 bool gRunUnitTest(UnitTest::TestReporter& reporter)
 {
-	xbase::init();
+	cbase::init();
 	
 #ifdef TARGET_DEBUG
 	ncore::context_t::set_assert_handler(&gAssertHandler);
@@ -92,7 +92,7 @@ bool gRunUnitTest(UnitTest::TestReporter& reporter)
 	UnitTest::SetAllocator(nullptr);
 	
 	ncore::context_t::set_system_alloc(system_alloc);
-	xbase::exit();
+	cbase::exit();
 	return r==0;
 }
 
