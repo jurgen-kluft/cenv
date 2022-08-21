@@ -1,5 +1,5 @@
-#ifndef __XENV_ENV_PUBLIC_H__
-#define __XENV_ENV_PUBLIC_H__
+#ifndef __CENV_ENV_PUBLIC_H__
+#define __CENV_ENV_PUBLIC_H__
 #include "cbase/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
@@ -228,4 +228,4 @@ namespace ncore
 
 } // namespace ncore
 
-#endif //< __XENV_ENV_PUBLIC_H__
+#endif //< __CENV_ENV_PUBLIC_H__

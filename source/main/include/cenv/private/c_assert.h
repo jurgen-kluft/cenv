@@ -1,5 +1,5 @@
-#ifndef __XREGISTRY_ASSERT_H__
-#define __XREGISTRY_ASSERT_H__
+#ifndef __CREGISTRY_ASSERT_H__
+#define __CREGISTRY_ASSERT_H__
 #include "cbase/c_target.h"
 #ifdef USE_PRAGMA_ONCE
 #    pragma once
